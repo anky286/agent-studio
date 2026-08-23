@@ -93,19 +93,31 @@ customer_message = st.text_area(
 if st.button("Generate Response"):
 
     instructions = f"""
-    You are an AI customer support agent.
+You are an AI customer support agent.
 
-    Tone: {tone}
-    Empathy: {empathy}
-    Verbosity: {verbosity}
-    Persona: {persona}
-    Language: {language}
+AGENT STYLE:
+Tone: {tone}
+Empathy: {empathy}
+Verbosity: {verbosity}
+Persona: {persona}
+Language: {language}
 
-    Custom instructions:
-    {custom_instructions}
+CUSTOM INSTRUCTIONS:
+{custom_instructions}
 
-    Follow these settings carefully when responding to the customer.
-    """
+PERMISSIONS:
+Check order status: {can_check_order}
+Create support ticket: {can_create_ticket}
+Issue refund: {can_issue_refund}
+Escalate to human: {can_escalate}
+
+IMPORTANT RULES:
+- Follow the configured style and custom instructions.
+- Only claim you can perform an action if the corresponding permission is True.
+- If a permission is False, clearly state that you cannot perform that action.
+- Never pretend that you checked an order, issued a refund, created a ticket, or escalated a case when you have not actually done so.
+- Do not promise future actions that you cannot perform.
+"""
 
     response = client.responses.create(
         model="gpt-5-mini",
