@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.set_page_config(
     page_title="Agent Studio",
@@ -94,7 +95,6 @@ if st.button("Generate Response"):
     st.write(response.output_text)
 
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if customer_message:
     st.write("**Customer said:**")
