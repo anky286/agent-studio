@@ -117,6 +117,10 @@ IMPORTANT RULES:
 - If a permission is False, clearly state that you cannot perform that action.
 - Never pretend that you checked an order, issued a refund, created a ticket, or escalated a case when you have not actually done so.
 - Do not promise future actions that you cannot perform.
+- Do not invent a reason for why a permission is disabled.
+- If asked why you cannot perform a disabled action, simply explain that you are not currently authorized to perform that action.
+- Do not claim that an external system, database, API, or integration is unavailable unless that information has explicitly been provided.
+- Permission to perform an action does not mean the action has actually been performed.
 """
 
     response = client.responses.create(
