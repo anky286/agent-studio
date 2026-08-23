@@ -46,6 +46,28 @@ custom_instructions = st.sidebar.text_area(
     placeholder="e.g. Always acknowledge customer frustration."
 )
 
+st.sidebar.subheader("Permissions")
+
+can_check_order = st.sidebar.checkbox(
+    "Check order status",
+    value=False
+)
+
+can_create_ticket = st.sidebar.checkbox(
+    "Create support ticket",
+    value=True
+)
+
+can_issue_refund = st.sidebar.checkbox(
+    "Issue refund",
+    value=False
+)
+
+can_escalate = st.sidebar.checkbox(
+    "Escalate to human",
+    value=True
+)
+
 # ---- Show selected configuration ----
 
 st.subheader("Current Agent Configuration")
