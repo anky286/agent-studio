@@ -55,3 +55,17 @@ st.write("**Language:**", language)
 
 if custom_instructions:
     st.write("**Custom Instructions:**", custom_instructions)
+
+
+st.divider()
+
+st.subheader("Test Your Agent")
+
+customer_message = st.text_area(
+    "Customer Message",
+    placeholder="e.g. My package is 5 days late and I am very frustrated."
+)
+
+if customer_message:
+    st.write("**Customer said:**")
+    st.write(customer_message)
