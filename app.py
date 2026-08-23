@@ -1,4 +1,8 @@
 import streamlit as st
+from openai import OpenAI
+
+
+import streamlit as st
 
 st.set_page_config(
     page_title="Agent Studio",
@@ -56,7 +60,6 @@ st.write("**Language:**", language)
 if custom_instructions:
     st.write("**Custom Instructions:**", custom_instructions)
 
-
 st.divider()
 
 st.subheader("Test Your Agent")
@@ -65,6 +68,35 @@ customer_message = st.text_area(
     "Customer Message",
     placeholder="e.g. My package is 5 days late and I am very frustrated."
 )
+
+if st.button("Generate Response"):
+
+    instructions = f"""
+    You are an AI customer support agent.
+
+    Tone: {tone}
+    Empathy: {empathy}
+    Verbosity: {verbosity}
+    Persona: {persona}
+    Language: {language}
+
+    Custom instructions:
+    {custom_instructions}
+
+    Follow these settings carefully when responding to the customer.
+    """
+
+    response = client.responses.create(
+        model="gpt-5-mini",
+        instructions=instructions,
+        input=customer_message
+    )
+
+    st.subheader("Agent Response")
+    st.write(response.output_text)
+
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if customer_message:
     st.write("**Customer said:**")
